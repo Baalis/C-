@@ -1,0 +1,55 @@
+Завдання 1
+#include <iostream>
+#include <cmath>
+
+int main() {
+    const double k1 = 5.15;
+    const double k2 = 5;
+    double x, y;
+
+    std::cout << "Введіть 5 значень x:\n";
+    for (int i = 0; i < 5; ++i) {
+        std::cout << "x" << (i + 1) << ": ";
+        std::cin >> x;
+        y = k1 * sin(x) + k2 - x;
+        std::cout << "y = " << y << std::endl;
+    }
+    return 0;
+}
+Завдання 2
+#include <iostream>
+
+int main() {
+    int sum = 0;
+    for (int i = 1; i <= 100; i += 2) {
+        sum += i;
+    }
+    std::cout << "Сума непарних чисел від 1 до 100: " << sum << std::endl;
+    return 0;
+}
+
+Завдання 3
+
+#include <iostream>
+#include <iomanip>
+
+int main() {
+    double a, b, h, x, y;
+    std::cout << "Введіть значення a, b, і h:\n";
+    std::cin >> a >> b >> h;
+
+    std::cout << "-------------------\n";
+    std::cout << ":    X   :     Y    :\n";
+    std::cout << "-------------------\n";
+
+    for (x = a; x <= b; x += h) {
+        if (x == -3) {
+            std::cout << "Значення x = -3 не належить ОДЗ." << std::endl;
+            break;
+        }
+        y = 64 / (3 + x);
+        std::cout << ": " << std::setw(6) << x << " : " << std::setw(8) << y << " :" << std::endl;
+    }
+    std::cout << "-------------------\n";
+    return 0;
+}
