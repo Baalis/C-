@@ -1,0 +1,57 @@
+Задача 1
+#include <iostream>
+#include <algorithm>
+
+int main() {
+    int arr[12] = {3, 8, 1, 5, 9, 6, 2, 7, 4, 12, 10, 11};
+
+    // Сортування за зростанням
+    std::sort(arr, arr + 12);
+    std::cout << "Масив за зростанням: ";
+    for (int i = 0; i < 12; ++i) {
+        std::cout << arr[i] << " ";
+    }
+    std::cout << std::endl;
+
+    // Сортування за спаданням
+    std::sort(arr, arr + 12, std::greater<int>());
+    std::cout << "Масив за спаданням: ";
+    for (int i = 0; i < 12; ++i) {
+        std::cout << arr[i] << " ";
+    }
+    std::cout << std::endl;
+
+    return 0;
+}
+Задача 2
+
+#include <iostream>
+#include <vector>
+
+int main() {
+    std::vector<int> arr = {-5, -1, 3, 9, -8, 2, 5, -4, 10, 6, -7};
+    int maxElementIndex = 0;
+
+    // Знаходження індексу першого максимального елемента
+    for (int i = 1; i < arr.size(); ++i) {
+        if (arr[i] > arr[maxElementIndex]) {
+            maxElementIndex = i;
+        }
+    }
+
+    // Заміна від’ємних елементів до першого максимального нулями
+    for (int i = 0; i < maxElementIndex; ++i) {
+        if (arr[i] < 0) {
+            arr[i] = 0;
+        }
+    }
+
+    // Виведення результату
+    std::cout << "Масив після заміни: ";
+    for (int num : arr) {
+        std::cout << num << " ";
+    }
+    std::cout << std::endl;
+
+    return 0;
+}
