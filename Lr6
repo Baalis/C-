@@ -1,0 +1,27 @@
+#include <iostream>
+
+int main() {
+    int N;
+    int product = 1;
+    bool hasEven = false;
+
+    std::cout << "Введіть натуральне число N: ";
+    std::cin >> N;
+
+    while (N > 0) {
+        int digit = N % 10; // Отримуємо останню цифру
+        if (digit % 2 == 0) {
+            product *= digit;
+            hasEven = true;
+        }
+        N /= 10; // Видаляємо останню цифру
+    }
+
+    if (hasEven) {
+        std::cout << "Добуток парних цифр: " << product << std::endl;
+    } else {
+        std::cout << "Парних цифр немає." << std::endl;
+    }
+
+    return 0;
+}
