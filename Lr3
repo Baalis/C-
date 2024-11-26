@@ -1,0 +1,70 @@
+Завдання 1
+Варіант 11
+
+#include <iostream>
+int main() {
+    int N;
+    std::cout << "Введите трехзначное число N: ";
+    std::cin >> N;
+
+    if (N < 100 || N > 999) {
+        std::cout << "Ошибка: Число не является трехзначным." << std::endl;
+        return 1;
+    }
+
+    // Разложение числа на цифры
+    int hundreds = N / 100;
+    int tens = (N / 10) % 10;
+    int units = N % 10;
+
+    int sum = 0;
+
+    // Проверка условий для каждой цифры
+    if (hundreds > 2 && hundreds % 2 != 0) sum += hundreds;
+    if (tens > 2 && tens % 2 != 0) sum += tens;
+    if (units > 2 && units % 2 != 0) sum += units;
+
+    std::cout << "Сумма всех цифр, которые больше 2 и нечетные: " << sum << std::endl;
+
+    return 0;
+}
+
+Завдання 2
+Варіант 11
+
+
+#include <iostream>
+
+int main() {
+    int busNumber;
+    std::cout << "Введите номер автобуса (1-5): ";
+    std::cin >> busNumber;
+
+    int stops;
+
+    // Используем оператор switch для определения количества остановок
+    switch (busNumber) {
+        case 1:
+            stops = 10;
+            break;
+        case 2:
+            stops = 8;
+            break;
+        case 3:
+            stops = 15;
+            break;
+        case 4:
+            stops = 12;
+            break;
+        case 5:
+            stops = 20;
+            break;
+        default:
+            std::cout << "Неверный номер автобуса." << std::endl;
+            return 1;
+    }
+
+    std::cout << "Количество остановок для автобуса №" << busNumber << ": " << stops << std::endl;
+
+    return 0;
+}
