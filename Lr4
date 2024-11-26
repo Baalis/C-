@@ -1,0 +1,69 @@
+Завдання 6
+#include <iostream>
+
+using namespace std;
+
+int main() {
+    bool answer;
+    int value;
+
+    cout << "Введіть значення: ";
+    cin >> value;
+
+    answer = ( (value >= 0 && value < 10) ||
+               (value * 2 < 20 && value - 2 > -2) ||
+               (value - 1 > 1 && value / 2 < 10) ||
+               (value == 111) );
+
+    cout << (answer ? "ЦЕ ПРАВДА :)" : "ЦЕ НЕ ПРАВДА :(") << endl;
+
+    return 0;
+}
+Завдання 7
+
+#include <iostream>
+#include <iomanip> // для std::setprecision
+
+using namespace std;
+
+int main() {
+    float a = 2.3f;
+    float b = 2.3f;
+    float c = 2.123456f;
+    float d = 2.123456f;
+    float e = 2.123456f;
+
+    cout << a << endl;
+    cout << fixed << setprecision(2) << b << endl;
+    cout << setprecision(6) << c << endl;
+    cout << setprecision(2) << d << endl;
+    cout << setprecision(0) << e << endl;
+
+    return 0;
+}
+
+Завдання 8
+
+#include <iostream>
+#include <cmath> // для std::fabs
+
+using namespace std;
+
+int main() {
+    int num1, num2;
+    const float epsilon = 0.000001f;
+
+    cout << "Введіть два цілі числа: ";
+    cin >> num1 >> num2;
+
+    float reciprocal1 = 1.0f / num1;
+    float reciprocal2 = 1.0f / num2;
+
+    if (fabs(reciprocal1 - reciprocal2) < epsilon) {
+        cout << "Результати рівні (з точністю до 0.000001)" << endl;
+    } else {
+        cout << "Результати не рівні (з точністю до 0.000001)" << endl;
+    }
+
+    return 0;
+}
