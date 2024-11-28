@@ -1,0 +1,91 @@
+Задача 1
+Умова: Написати програму, яка додає до введеного часу (години та хвилини) задану кількість хвилин і виводить отриманий час у форматі гг:хх.
+
+#include <iostream>
+#include <iomanip>
+
+struct Date {
+    int hours;
+    int minutes;
+};
+
+void addMinutes(Date &time, int minutesToAdd) {
+    int totalMinutes = time.hours * 60 + time.minutes + minutesToAdd;
+    time.hours = (totalMinutes / 60) % 24;  // Перетворення хвилин у години
+    time.minutes = totalMinutes % 60;      // Залишок хвилин
+}
+
+int main() {
+    Date time;
+    int minutesToAdd;
+
+    std::cout << "Введіть години: ";
+    std::cin >> time.hours;
+    std::cout << "Введіть хвилини: ";
+    std::cin >> time.minutes;
+    std::cout << "Введіть кількість хвилин для додавання: ";
+    std::cin >> minutesToAdd;
+
+    if (time.hours < 0 || time.hours >= 24 || time.minutes < 0 || time.minutes >= 60) {
+        std::cout << "Неправильний формат часу!" << std::endl;
+        return 1;
+    }
+
+    addMinutes(time, minutesToAdd);
+
+    std::cout << "Новий час: " 
+              << std::setw(2) << std::setfill('0') << time.hours << ":"
+              << std::setw(2) << std::setfill('0') << time.minutes << std::endl;
+
+    return 0;
+}
+
+Задача 2
+Умова: Програма обчислює різницю між початком і кінцем події у годинах і хвилинах.
+
+#include <iostream>
+#include <iomanip>
+
+struct Date {
+    int hours;
+    int minutes;
+};
+
+Date calculateDuration(const Date &start, const Date &end) {
+    int startMinutes = start.hours * 60 + start.minutes;
+    int endMinutes = end.hours * 60 + end.minutes;
+
+    if (endMinutes < startMinutes) {
+        endMinutes += 24 * 60;  // Якщо подія триває через північ
+    }
+
+    int durationMinutes = endMinutes - startMinutes;
+    Date duration;
+    duration.hours = durationMinutes / 60;
+    duration.minutes = durationMinutes % 60;
+
+    return duration;
+}
+
+int main() {
+    Date start, end;
+
+    std::cout << "Введіть початковий час (години хвилини): ";
+    std::cin >> start.hours >> start.minutes;
+    std::cout << "Введіть кінцевий час (години хвилини): ";
+    std::cin >> end.hours >> end.minutes;
+
+    if (start.hours < 0 || start.hours >= 24 || start.minutes < 0 || start.minutes >= 60 ||
+        end.hours < 0 || end.hours >= 24 || end.minutes < 0 || end.minutes >= 60) {
+        std::cout << "Неправильний формат часу!" << std::endl;
+        return 1;
+    }
+
+    Date duration = calculateDuration(start, end);
+
+    std::cout << "Тривалість події: " 
+              << std::setw(2) << std::setfill('0') << duration.hours << ":"
+              << std::setw(2) << std::setfill('0') << duration.minutes << std::endl;
+
+    return 0;
+}
