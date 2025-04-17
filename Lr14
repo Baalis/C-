@@ -1,0 +1,84 @@
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+
+int main() {
+    std::srand(std::time(0)); // Ініціалізація генератора випадкових чисел
+    
+    int size;
+    std::cout << "Enter array size: ";
+    std::cin >> size;
+    
+    double* arr = new double[size]; // Виділення динамічної пам'яті
+    
+    int positiveCount = 0, negativeCount = 0;
+    
+    std::cout << "Generated array: ";
+    for (int i = 0; i < size; i++) {
+        arr[i] = -2.0 + static_cast<double>(std::rand()) / RAND_MAX * 4.0; // Генерація випадкових чисел у діапазоні (-2, 2)
+        std::cout << arr[i] << " ";
+        
+        if (arr[i] > 0) positiveCount++;
+        else if (arr[i] < 0) negativeCount++;
+    }
+    std::cout << std::endl;
+    
+    std::cout << "Number of positive numbers: " << positiveCount << std::endl;
+    std::cout << "Number of negative numbers: " << negativeCount << std::endl;
+    
+    delete[] arr; // Звільнення пам'яті
+    
+    return 0;
+}
+
+____________________________________________________________________________________-
+
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+
+int main() {
+    std::srand(std::time(0)); // Ініціалізація генератора випадкових чисел
+    
+    const int rows = 3, cols = 3;
+    int** matrix = new int*[rows]; // Виділення пам'яті для рядків
+    for (int i = 0; i < rows; i++) {
+        matrix[i] = new int[cols]; // Виділення пам'яті для стовпців
+    }
+    
+    int evenCount = 0, oddCount = 0;
+    
+    std::cout << "Generated matrix:" << std::endl;
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            matrix[i][j] = std::rand() % 100; // Генерація випадкових чисел
+            std::cout << matrix[i][j] << " ";
+            
+            if (matrix[i][j] % 2 == 0) evenCount++;
+            else oddCount++;
+        }
+        std::cout << std::endl;
+    }
+    
+    std::cout << "Main diagonal: ";
+    for (int i = 0; i < rows; i++) {
+        std::cout << matrix[i][i] << " ";
+    }
+    std::cout << std::endl;
+    
+    std::cout << "Secondary diagonal: ";
+    for (int i = 0; i < rows; i++) {
+        std::cout << matrix[i][cols - i - 1] << " ";
+    }
+    std::cout << std::endl;
+    
+    std::cout << "Number of even numbers: " << evenCount << std::endl;
+    std::cout << "Number of odd numbers: " << oddCount << std::endl;
+    
+    for (int i = 0; i < rows; i++) {
+        delete[] matrix[i]; // Звільнення пам'яті для кожного рядка
+    }
+    delete[] matrix; // Звільнення пам'яті для масиву покажчиків
+    
+    return 0;
+}
