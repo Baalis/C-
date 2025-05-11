@@ -1,0 +1,94 @@
+#include <iostream>
+#include <stdexcept>  // Подключаем заголовок для исключений
+
+using namespace std;
+
+int main(void) {
+    int a = 8, b = 0, c = 0;
+    cin >> b;
+
+    try {
+        // Проверка на деление на ноль
+        if (b == 0) {
+            throw runtime_error("Your input is not valid, you can't divide by zero.");
+        }
+        c = a / b;
+        cout << c << endl;
+    }
+    catch (const runtime_error& e) {
+        // Обработка исключения
+        cerr << e.what() << endl;
+    }
+
+    return 0;
+}
+
+
+______________________________________
+
+
+
+
+#include <iostream>
+using namespace std;
+
+int main(void) {
+    int a = 0, b = 0, c = 0;
+    
+    cout << "Enter two integers (dividend and divisor):\n";
+    cin >> a;  // Вводимо чисельник
+    cin >> b;  // Вводимо дільник
+
+    try {
+        if (b == 0) {
+            // Викидаємо виняток, якщо дільник 0
+            throw "Your input is not valid, you can't divide by zero.";
+        }
+        c = a / b;  // Ділення
+        cout << "Result: " << c << endl;  // Виведення результату
+    }
+    catch (const char* msg) {
+        // Перехоплюємо виняток та виводимо повідомлення
+        cout << msg << endl;
+    }
+
+    return 0;
+}
+
+
+
+____________________________________
+
+
+
+#include <iostream>
+using namespace std;
+
+const int DivideByZero = 111;
+
+float internaldiv(float arg1, float arg2)
+{
+    if (arg2 == 0.0)
+        throw DivideByZero; // Throw an exception if division by zero
+    return arg1 / arg2;
+}
+
+int main(void)
+{
+    float r, a, b;
+    while (cin >> a)
+    {
+        cin >> b;
+        try
+        {
+            r = internaldiv(a, b); // Try to perform division
+            cout << r << endl;      // If successful, print the result
+        }
+        catch (int e)
+        {
+            if (e == DivideByZero)
+                cout << "Your input is not valid. You can't divide by zero." << endl; // Handle the division by zero error
+        }
+    }
+    return 0;
+}
